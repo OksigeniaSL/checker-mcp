@@ -1,6 +1,7 @@
 {
   "name": "@oksigenia/checker-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "com.oksigenia/checker-mcp",
   "description": "MCP server exposing a domain security & privacy checker (SSL/TLS, email auth, DNS, web headers). Local-first, zero telemetry.",
   "license": "GPL-3.0-or-later",
   "author": "Oksigenia SL <dev@oksigenia.cc>",

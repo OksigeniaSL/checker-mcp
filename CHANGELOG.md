@@ -4,6 +4,10 @@ All notable changes to this package are documented here. Releases and this
 changelog are managed with [changesets](https://github.com/changesets/changesets)
 (`npm run version`).
 
+## 0.1.1
+
+- Add the `mcpName` package field so the server can be listed on the official MCP Registry under the `com.oksigenia` namespace. No functional changes.
+
 ## 0.1.0 — Initial public release
 
 - MCP server exposing a domain security and privacy checker over stdio, with three tools: `check_domain`, `list_checks`, and `explain_check`.
