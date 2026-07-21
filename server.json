@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.oksigenia/checker-mcp",
+  "description": "Domain security & privacy checker as an MCP server. 17 live checks, 0-100 score, local-first.",
+  "repository": {
+    "url": "https://github.com/OksigeniaSL/checker-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@oksigenia/checker-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
