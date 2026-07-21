@@ -1,0 +1,33 @@
+name: publish
+
+# Publishes @oksigenia/checker-mcp to npm via Trusted Publishing (OIDC) — no
+# long-lived tokens. Triggered manually once the release is ready.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # required for OIDC Trusted Publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          # Do NOT set registry-url: it writes an .npmrc auth placeholder that
+          # breaks OIDC. npm detects Trusted Publishing from id-token + --provenance.
+
+      # Trusted Publishing (OIDC) needs npm >= 11.5.1; the runner ships an older one.
+      - run: npm install -g npm@latest
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test
+
+      - run: npm publish --provenance --access public
