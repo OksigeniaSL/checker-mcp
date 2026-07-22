@@ -101,6 +101,15 @@ Or add it to any MCP client config (works in Claude Desktop, Claude Code, or any
 
 Then ask: *"Check the security of example.com"* or *"Explain the dmarc check."*
 
+## Run with Docker
+
+Build and run it as a container. It speaks MCP over stdio, so run it attached to your client's stdin/stdout (`-i`), not on a port.
+
+```bash
+docker build -t oksigenia-checker-mcp .
+docker run --rm -i oksigenia-checker-mcp
+```
+
 ## Languages
 
 Reports render in Spanish and English. Set the default with `OKSIGENIA_LANG` (`es` or `en`), or pass `lang` on any tool call. It defaults to English.
