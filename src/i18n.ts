@@ -135,6 +135,8 @@ const EN: Record<string, string> = {
   "check.mx.fix": "Publish MX records pointing to your mail provider.",
   "check.mx.ok": "{count} mail server(s) configured.",
   "check.mx.none": "No MX records.",
+  "check.mx.null": "Null MX (RFC 7505): the domain receives no mail.",
+  "check.no_mail.na": "Not applicable: the domain declares it neither sends nor receives mail (null MX, SPF -all and DMARC p=reject).",
 
   // --- DNSSEC ---
   "check.dnssec.title": "DNSSEC",
@@ -356,6 +358,8 @@ const ES: Record<string, string> = {
   "check.mx.fix": "Publica registros MX apuntando a tu proveedor de correo.",
   "check.mx.ok": "{count} servidor(es) de correo configurado(s).",
   "check.mx.none": "Sin registros MX.",
+  "check.mx.null": "MX nulo (RFC 7505): el dominio no recibe correo.",
+  "check.no_mail.na": "No aplica: el dominio declara que no envía ni recibe correo (MX nulo, SPF -all y DMARC p=reject).",
 
   // --- DNSSEC ---
   "check.dnssec.title": "DNSSEC",

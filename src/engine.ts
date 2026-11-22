@@ -894,6 +894,32 @@ export async function runChecks(
       });
     }
 
+    // A domain that neither sends nor receives mail (null MX, RFC 7505), locked down with SPF "-all" and DMARC
+    // p=reject: DKIM, MTA-STS and BIMI don't apply, so they come out as info (full weight) instead of failing, as the
+    // live checker.oksigenia.com has done since 2026-10-05. A fake DKIM key or an MTA-STS policy without MX would be
+    // theatre.
+    const mxData = answersOf(mxResp, T_MX).map((a) => String(a.data ?? "").trim());
+    const spfRecords = txtStrings(txtApex).filter((t) => t.startsWith("v=spf1"));
+    const dmarcRecord = txtStrings(dmarcResp).find((t) => t.startsWith("v=DMARC1")) ?? "";
+    const noMail =
+      mxData.length === 1 &&
+      /^0\s+\.?$/.test(mxData[0] ?? "") &&
+      spfRecords.length === 1 &&
+      /^v=spf1\s+-all$/i.test((spfRecords[0] ?? "").trim()) &&
+      /\bp=reject\b/.test(dmarcRecord);
+    if (noMail) {
+      for (const c of checks) {
+        if (c.id === "mx") {
+          c.detailKey = "check.mx.null";
+          delete c.params;
+        } else if (c.id === "dkim" || c.id === "mta_sts" || c.id === "bimi") {
+          c.severity = "info";
+          c.detailKey = "check.no_mail.na";
+          delete c.params;
+        }
+      }
+    }
+
     const { score, grade, summary } = aggregate(checks);
     return { domain, score, grade, summary, checks };
   } catch {
