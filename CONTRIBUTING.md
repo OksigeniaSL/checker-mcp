@@ -30,7 +30,7 @@ The unit tests in `src/engine.test.ts` mock the network, so they run offline and
 ## Opening a pull request
 
 - Keep the PR focused on one thing.
-- Make sure CI is green: the `verify` job runs typecheck, build, and tests on Node 18, 20, and 22.
+- Make sure CI is green: the `verify` job runs typecheck, build, and tests on Node 20, 22, and 24.
 - Describe what changed and why. Link any related issue.
 
 ## Code style
