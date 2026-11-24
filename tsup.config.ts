@@ -6,7 +6,7 @@ export default defineConfig({
     engine: "src/engine.ts", // reusable engine (library export)
   },
   format: ["esm"],
-  target: "node18",
+  target: "node20",
   dts: true,
   clean: true,
   sourcemap: true,
